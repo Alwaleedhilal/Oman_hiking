@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شغف الهايكنج في عُمان | التجربة والمسارات</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            dark: '#0a0e17',
+                            card: '#131b29',
+                            accent: '#10b981'
+                        }
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #080c14;
+            color: #f3f4f6;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 38, 0.85);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(19, 27, 41, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(245, 158, 11, 0.4);
+            box-shadow: 0 16px 35px -10px rgba(245, 158, 11, 0.25);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080c14;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f59e0b;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-amber-500 selection:text-black">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-gray-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="resetFilters()">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-amber-600 to-amber-400 flex items-center justify-center text-slate-950 font-black text-2xl shadow-lg shadow-amber-500/20">
+                    <i class="fa-solid font-bold fa-person-hiking"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-black tracking-wide text-white leading-tight">عُمان <span class="text-amber-500">هايكنج</span></h1>
+                    <p class="text-xs text-gray-400 font-medium">فلسفة المشي والمسارات الطبيعية</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <button onclick="scrollToFeelings()" class="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 text-xs font-bold transition-all border border-gray-700">
+                    <i class="fa-solid fa-heart-pulse text-amber-500"></i>
+                    <span>شعور الهايكنج</span>
+                </button>
+                <button onclick="toggleFavoritesModal()" class="relative p-2.5 rounded-xl bg-gray-800/80 hover:bg-gray-700 text-amber-400 border border-gray-700/50 transition-all">
+                    <i class="fa-solid fa-bookmark text-lg"></i>
+                    <span id="favCountBadge" class="absolute -top-1.5 -right-1.5 bg-amber-500 text-black font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center border-2 border-slate-900 hidden">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative py-16 lg:py-20 overflow-hidden border-b border-gray-800/40">
+        <div class="absolute inset-0 bg-gradient-to-b from-amber-500/5 via-transparent to-transparent pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs sm:text-sm font-semibold mb-6">
+                <i class="fa-solid fa-mountain text-amber-500"></i> رحلة البحث عن الذات في الطبيعة
+            </span>
+            <h2 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+                الهايكنج ليس مجرد مشي... <br class="hidden sm:inline">إنه <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600">تصفية للذهن واكتشاف للطبيعة</span>
+            </h2>
+            <p class="max-w-3xl mx-auto text-gray-300 text-sm sm:text-base lg:text-lg mb-8 leading-relaxed">
+                استكشف أجمل المسارات الجبلية والأودية في سلطنة عُمان، وتعرّف على التجربة النفسية والجسدية الكاملة التي تعيشها في كل خطوة أثنـاء الهايكنج وعند النهاية.
+            </p>
+
+            <!-- Search Bar -->
+            <div class="max-w-xl mx-auto relative mb-8">
+                <div class="relative flex items-center">
+                    <i class="fa-solid fa-magnifying-glass absolute right-4 text-gray-400 text-lg"></i>
+                    <input type="text" id="searchInput" oninput="handleSearch()" placeholder="ابحث عن مسار، جبل، وادي أو ولاية..." 
+                        class="w-full pl-4 pr-12 py-3.5 sm:py-4 rounded-2xl bg-gray-900/90 border border-gray-700/80 text-white placeholder-gray-400 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all text-sm sm:text-base shadow-xl">
+                    <button id="clearSearchBtn" onclick="clearSearch()" class="absolute left-4 text-gray-400 hover:text-white hidden">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Categories Filter -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3" id="categoriesContainer"></div>
+        </div>
+    </section>
+
+    <!-- SECTION: THE FEELING OF HIKING (أثناء الهايكنج وبعد الهايكنج) -->
+    <section id="feelingsSection" class="py-16 bg-slate-900/60 border-b border-gray-800/60 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-amber-500 text-sm font-bold tracking-wider uppercase">فلسفة الحركة</span>
+                <h3 class="text-3xl font-extrabold text-white mt-2">ماذا تشعر عندما تمارس الهايكنج؟</h3>
+                <p class="text-gray-400 text-sm mt-2 max-w-2xl mx-auto">تحول كامل في الحالة النفسية والجسدية يصحبك في رحلتك عبر الجبال والمسارات الطبيعية.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- During Hiking -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl border-l-4 border-l-amber-500">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-2xl font-bold">
+                            <i class="fa-solid fa-person-hiking"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-white">شعورك <span class="text-amber-500">أثناء الهايكنج</span></h4>
+                            <p class="text-xs text-gray-400">في قلب الطريق والمحاولة</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-4 text-sm text-gray-300">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-bolt text-amber-400 mt-1"></i>
+                            <div>
+                                <strong class="text-white">تصفية الذهن والصمت الداخلي:</strong> مع كل خطوة، تبدأ ضغوطات الحياة بالابتعاد. يصبح تركيزك محصوراً في تنفسك وفي موضع قدمك القادمة فقط.
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-wind text-amber-400 mt-1"></i>
+                            <div>
+                                <strong class="text-white">التأمل والاندماج بالطبيعة:</strong> صوت الهواء بين الجبال، خرير المياه في الأودية، ورائحة الصخور والصحراء تمنحك إحساساً بالحضور التام في اللحظة (Mindfulness).
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-brain text-amber-400 mt-1"></i>
+                            <div>
+                                <strong class="text-white">صراع التحدي والقوة:</strong> في الصعود والمناطق الصعبة، تكتشف حدود طاقتك وتتعلم إرادة الصبر وعدم الاستسلام حتى تصل لقمة المسار.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- After Hiking -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl border-l-4 border-l-emerald-500">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl font-bold">
+                            <i class="fa-solid fa-flag-checkered"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-white">شعورك <span class="text-emerald-400">بعد الانتهاء من الهايكنج</span></h4>
+                            <p class="text-xs text-gray-400">نشوة الإنجاز والراحة العمية</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-4 text-sm text-gray-300">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-trophy text-emerald-400 mt-1"></i>
+                            <div>
+                                <strong class="text-white">نشوة الإنجاز والفخر (Hiker's High):</strong> إفراز هرمونات السعادة (الإندورفين) يمنحك شعوراً عارماً بالفخر لمواجهة التحدي وقطع الكيلومترات.
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-bed text-emerald-400 mt-1"></i>
+                            <div>
+                                <strong class="text-white">الاسترخاء والراحة العميقة:</strong> تعود لجسدك حالة راحة واستسناء عميقين، مع إحساس بتجدد النشاط وصفاء كامل في التفكير لعدة أيام قادمة.
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-eye text-emerald-400 mt-1"></i>
+                            <div>
+                                <strong class="text-white">منظور جديد للحياة:</strong> النظر إلى الأشياء من الأعلى يجعلك تشعر بصغر المشاكل اليومية وتقدير قيمة الصحة والجمال الطبيعي.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-grow w-full">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h3 class="text-2xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-map-location-dot text-amber-500"></i>
+                    <span>مسارات الهايكنج في سلطنة عُمان</span>
+                </h3>
+                <p class="text-xs sm:text-sm text-gray-400 mt-1" id="resultsCount">جاري تحميل المسارات...</p>
+            </div>
+        </div>
+
+        <!-- Destinations Grid Container -->
+        <div id="destinationsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+
+        <!-- No Results Fallback -->
+        <div id="noResults" class="hidden text-center py-16 glass-card rounded-2xl max-w-md mx-auto my-8">
+            <i class="fa-solid fa-compass-slash text-5xl text-gray-500 mb-4"></i>
+            <h4 class="text-xl font-bold text-white mb-2">لم نجد مساراً يطابق بحثك</h4>
+            <p class="text-gray-400 text-sm mb-6">جرب البحث بكلمات أخرى أو تغيير التصنيف.</p>
+            <button onclick="resetFilters()" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition-all">إعادة ضبط البحث</button>
+        </div>
+    </main>
+
+    <!-- BEFORE & DURING HIKING GUIDELINES -->
+    <section class="bg-slate-900/80 border-t border-gray-800 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-amber-500 text-sm font-bold tracking-wider uppercase">دليل السلامة الشامل</span>
+                <h3 class="text-3xl font-extrabold text-white mt-2">ماذا تفعل قبل المجيء وأثناء الهايكنج؟</h3>
+                <p class="text-gray-400 text-sm mt-2 max-w-xl mx-auto">توصيات الخبراء لضمان سلامتك واستكشاف المسارات بكل أمان ومتعة.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- BEFORE COMING -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl border-t-4 border-t-amber-500">
+                    <h4 class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                        <i class="fa-solid fa-clipboard-check text-amber-500 text-2xl"></i>
+                        <span>قبل المجيء (مرحلة التحضير)</span>
+                    </h4>
+                    <div class="space-y-4 text-sm text-gray-300">
+                        <div class="flex gap-3">
+                            <div class="w-7 h-7 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xs shrink-0">1</div>
+                            <div>
+                                <strong class="text-white block">مراجعة حالة الطقس:</strong>
+                                تأكد من عدم وجود توقعات بأمطار أو جفاء في الأودية، حيث إن الأودية في عُمان قد تتدفق بشكل جارف وسريع.
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="w-7 h-7 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xs shrink-0">2</div>
+                            <div>
+                                <strong class="text-white block">إبلاغ شخص بالموقع والوقت:</strong>
+                                شارك خط سير رحلتك ووقت عودتك المتوقع مع صديق أو أحد أفراد العائلة قبل انقطاع التغطية.
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="w-7 h-7 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xs shrink-0">3</div>
+                            <div>
+                                <strong class="text-white block">تجهيز الحذاء والأدوات المناسبة:</strong>
+                                لا تستخدم أحذية عادية؛ اختر حذاء هايكنج بثبات قوي للكاحل ومانع للانزلاق، مع حقيبة ظهر مريحة.
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="w-7 h-7 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xs shrink-0">4</div>
+                            <div>
+                                <strong class="text-white block">حساب كميات المياه والأغذية:</strong>
+                                خذ ما لا يقل عن 3 لترات ماء للشخص الواحد، مع وجبات عالية الطاقة كالتمور والمكسرات.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DURING HIKING -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl border-t-4 border-t-emerald-500">
+                    <h4 class="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                        <i class="fa-solid fa-person-walking-with-cane text-emerald-400 text-2xl"></i>
+                        <span>أثناء الهايكنج (في المسار)</span>
+                    </h4>
+                    <div class="space-y-4 text-sm text-gray-300">
+                        <div class="flex gap-3">
+                            <div class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs shrink-0">1</div>
+                            <div>
+                                <strong class="text-white block">الالتزام بالمسار المحدد:</strong>
+                                اتبع العلامات الملونة المحددة للمسارات الرسمية ولا تخرج عنها لتجنب الانزلاق أو الضياع.
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs shrink-0">2</div>
+                            <div>
+                                <strong class="text-white block">الشرب المنتظم واستراحات الأنفاس:</strong>
+                                اشرب الماء على فترات منتظمة حتى قبل أن تشعر بالعطش لتجنب الجفاف، وحافظ على ريتم مشي متزن.
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs shrink-0">3</div>
+                            <div>
+                                <strong class="text-white block">المحافظة على النظافة والبيئة:</strong>
+                                لا تترك أي أثر (Leave No Trace). احتفظ بكل نفاياتك في حقيبتك حتى تعود واحترم النباتات والحياة الفطرية.
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs shrink-0">4</div>
+                            <div>
+                                <strong class="text-white block">الاستماع للجسد والتقييم المستمر:</strong>
+                                إذا شعرت بإجهاد شديد أو تغير مفاجئ في الطقس، لا تتردد في اتخاذ قرار العودة فوراً.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black/90 border-t border-gray-800 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-amber-500 text-slate-950 font-bold flex items-center justify-center text-sm">
+                    <i class="fa-solid fa-mountain"></i>
+                </div>
+                <span class="text-sm font-bold text-gray-300">عُمان هايكنج &copy; 2026</span>
+            </div>
+            <p class="text-xs text-gray-500 text-center sm:text-right">دليلك الشامل لتجربة الهايكنج، مسارات الجبال، والرياضة الميدانية في سلطنة عُمان.</p>
+        </div>
+    </footer>
+
+    <!-- DESTINATION DETAIL MODAL -->
+    <div id="detailModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden opacity-0 transition-opacity duration-300 overflow-y-auto">
+        <div class="relative w-full max-w-3xl bg-slate-900 border border-gray-700 rounded-2xl shadow-2xl overflow-hidden my-8 max-h-[90vh] flex flex-col">
+            <div class="relative h-64 sm:h-80 w-full overflow-hidden shrink-0">
+                <img id="modalImage" src="" alt="" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+                
+                <button onclick="closeModal()" class="absolute top-4 left-4 w-10 h-10 rounded-full bg-black/60 text-white hover:bg-amber-500 hover:text-black flex items-center justify-center transition-all z-10">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+
+                <div class="absolute top-4 right-4 flex items-center gap-2">
+                    <span id="modalCategory" class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500 text-slate-950"></span>
+                </div>
+
+                <div class="absolute bottom-4 right-6 left-6">
+                    <div class="flex items-center gap-2 text-amber-400 text-xs font-semibold mb-1">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span id="modalLocation"></span>
+                    </div>
+                    <h3 id="modalTitle" class="text-2xl sm:text-3xl font-extrabold text-white"></h3>
+                </div>
+            </div>
+
+            <div class="p-6 sm:p-8 overflow-y-auto space-y-6 flex-grow">
+                <!-- Stats Bar -->
+                <div class="grid grid-cols-3 gap-3 p-4 bg-gray-800/60 rounded-xl border border-gray-700/50 text-center">
+                    <div>
+                        <span class="block text-xs text-gray-400 mb-1">المسافة الكلية</span>
+                        <span id="modalDistance" class="font-bold text-amber-400 text-xs sm:text-sm"></span>
+                    </div>
+                    <div class="border-r border-l border-gray-700/60">
+                        <span class="block text-xs text-gray-400 mb-1">درجة الصعوبة</span>
+                        <span id="modalDifficulty" class="font-bold text-xs sm:text-sm"></span>
+                    </div>
+                    <div>
+                        <span class="block text-xs text-gray-400 mb-1">المدة المتوقعة</span>
+                        <span id="modalDuration" class="font-bold text-xs sm:text-sm text-white"></span>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-circle-info text-amber-500"></i> تفاصيل المسار
+                    </h4>
+                    <p id="modalDescription" class="text-gray-300 text-sm leading-relaxed"></p>
+                </div>
+
+                <!-- BEFORE COMING SPECIFIC TIPS -->
+                <div class="bg-amber-500/10 border border-amber-500/20 p-4 rounded-xl">
+                    <h4 class="text-base font-bold text-amber-400 mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-clipboard-list"></i> نصائح خاصة قبل المجيء لهذا المسار
+                    </h4>
+                    <p id="modalBeforeTip" class="text-xs sm:text-sm text-gray-300 leading-relaxed"></p>
+                </div>
+
+                <!-- DURING HIKING SPECIFIC TIPS -->
+                <div class="bg-emerald-500/10 border border-emerald-500/20 p-4 rounded-xl">
+                    <h4 class="text-base font-bold text-emerald-400 mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-person-walking"></i> نصائح وإرشادات أثناء المشي بالمسار
+                    </h4>
+                    <p id="modalDuringTip" class="text-xs sm:text-sm text-gray-300 leading-relaxed"></p>
+                </div>
+
+                <!-- Required Gear -->
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-toolbox text-amber-500"></i> الأدوات الموصى بها
+                    </h4>
+                    <div id="modalGear" class="flex flex-wrap gap-2"></div>
+                </div>
+
+                <div class="pt-4 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <a id="modalMapLink" href="#" target="_blank" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm flex items-center justify-center gap-2 transition-all">
+                        <i class="fa-solid fa-map-pin"></i>
+                        <span>فتح الموقع في خرائط Google</span>
+                    </a>
+                    <button id="modalFavBtn" onclick="" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 text-white font-bold text-sm flex items-center justify-center gap-2 border border-gray-700 transition-all">
+                        <i class="fa-solid fa-bookmark"></i>
+                        <span id="modalFavBtnText">حفظ المسار</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAVORITES MODAL -->
+    <div id="favModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+        <div class="relative w-full max-w-xl bg-slate-900 border border-gray-700 rounded-2xl shadow-2xl p-6 flex flex-col max-h-[80vh]">
+            <div class="flex items-center justify-between pb-4 border-b border-gray-800">
+                <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-bookmark text-amber-500"></i> المسارات المحفوظة
+                </h3>
+                <button onclick="toggleFavoritesModal()" class="text-gray-400 hover:text-white">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            
+            <div id="favListContainer" class="py-4 overflow-y-auto space-y-3 flex-grow"></div>
+        </div>
+    </div>
+
+    <!-- JavaScript Data & Logic -->
+    <script>
+        // Updated Destinations Data Array with Distance, Difficulty, Before/During Tips
+        const destinations = [
+            {
+                id: 'jebel-shams-w6',
+                title: 'مسار الحافة - جبل شمس (W6)',
+                category: 'جبال شاهقة',
+                categoryKey: 'mountains',
+                location: 'ولاية الحمراء - محافظة الداخلية',
+                difficulty: 'متوسط إلى صعب',
+                distance: '9.5 كم (ذهاب وإياد)',
+                duration: '4 - 5 ساعات',
+                image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80',
+                description: 'مسار مذهل يسير على حافة أعمق أخدود جلي في الشرق الأوسط. إطلالات جرفية ساحرة تنتهي عند قرية "الصراب" القديمة المهجورة المعلقة بالجبل.',
+                beforeTip: 'تأكد من إحضار ملابس دافئة لأن درجات الحرارة تنخفض كثيراً في الأعلى، واحزم حذاء هايكنج قوي جداً ومعدات حماية من الشمس.',
+                duringTip: 'احذر القرب الشديد من الحافة الجرفية أثناء التقاط الصور، وحافظ على ريتم خطى متزن خصوصاً عند العودة صعوداً.',
+                gear: ['حذاء هايكنج مع حماية كاحل', 'عصا مشي جبلية', 'ماء (3 لتر)', 'واقي شمس وقبعة', 'سترة دافئة']
+            },
+            {
+                id: 'wadi-shab',
+                title: 'مسار وادي شاب المائي',
+                category: 'أودية مائية',
+                categoryKey: 'wadis',
+                location: 'ولاية صور - محافظة جنوب الشرقية',
+                difficulty: 'متوسط',
+                distance: '5 كم (مشي + سباحة)',
+                duration: '3 - 4 ساعات',
+                image: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1000&q=80',
+                description: 'مزيج فريد من المشي بين المزارع والممر الصخري ثم السباحة عبر البحيرات المائية المفتوحة للوصول لشلال الكهف الخفي.',
+                beforeTip: 'اشترِ حقيبة مضادة للماء (Dry Bag) لوضع هاتفك ومتعلقاتك قبل البدء، وارتدِ حذاء مائياً مخصصاً للانزلاق الصخري.',
+                duringTip: 'تجنب القفز في البرك المائية ما لم تكن متأكداً من عمق المياه وخلوها من الصخور القريبة.',
+                gear: ['حقيبة مضادة للماء', 'حذاء مائي مخصص', 'سترة نجاة للسباحة', 'نظارات سباحة']
+            },
+            {
+                id: 'jebel-akhdar-w18',
+                title: 'مسار القرى والأفلاج - الجبل الأخضر (W18b)',
+                category: 'مدرجات وقرى',
+                categoryKey: 'villages',
+                location: 'ولاية نزوى - محافظة الداخلية',
+                difficulty: 'سهل إلى متوسط',
+                distance: '4.2 كم',
+                duration: '2 - 3 ساعات',
+                image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80',
+                description: 'هايكنج ممتع يربط بين القرى الجبلية التاريخية (العين، العقور، الشريجة) بين المدرجات الزراعية وقنوات الأفلاج العُمانية القديمة.',
+                beforeTip: 'يفضل زيارته في موسم الورد العماني (مارس/أبريل) أو موسم الرمان. ارتدِ ملابس محتشمة ومريحة احتراماً للقرى السكنية.',
+                duringTip: 'احرص على المشي بجانب مسارات الأفلاج بتمهل ولا تقطف الفواكه أو الورود من مزارع الأهالي.',
+                gear: ['حذاء مشي مريح', 'كاميرا تصوير', 'قبعة شمسية', 'مياه شرب']
+            },
+            {
+                id: 'wadi-tiwi-hiking',
+                title: 'مسار وادي طوي (شلال ميمام)',
+                category: 'أودية مائية',
+                categoryKey: 'wadis',
+                location: 'ولاية صور - محافظة جنوب الشرقية',
+                difficulty: 'صعب',
+                distance: '7 كم',
+                duration: '5 - 6 ساعات',
+                image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1000&q=80',
+                description: 'مسار مغامرة متقدم يتطلب اللياقة العالية، يتضمن التسلق فوق صخور ضخمة وممرات مائية عميقة وسط بساتين النخيل وشلالات هادرة.',
+                beforeTip: 'يتطلب لياقة بدنية عالية وخبرة سابقة في المشي الصخري، احرص على الانطلاق في الصباح الباكر جداً.',
+                duringTip: 'انتبه للصخور المبتلة والمجهزة بالطحالب لتجنب الانزلاق، واستخدم الحبال إذا لزم الأمر في النقاط الصعبة.',
+                gear: ['حذاء هايكنج مائي خفيف', 'حقيبة مضادة للماء', 'وجبات طاقة كافية', 'حبل مساعدة']
+            },
+            {
+                id: 'muttrah-geotrek',
+                title: 'مسار ريام إلى مطرح (C53)',
+                category: 'مسارات تاريخية',
+                categoryKey: 'heritage',
+                location: 'محافظة مسقط',
+                difficulty: 'سهل إلى متوسط',
+                distance: '3.5 كم',
+                duration: '2 ساعة',
+                image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80',
+                description: 'مسار جبال جولوجي قديم ينطلق من حدائق ريام حتى قلب سوق مطرح، يوفر إطلالات برية وبحرية ساحرة على العاصمة مسقط.',
+                beforeTip: 'المسار ممتع جِداً وقت الشروق أو قبل الغروب بساعتين، خذ معك كمية كافية من الماء.',
+                duringTip: 'اتبّع العلامات الملونة المحددة على الصخور بعناية لتجنب السير نحو المرتفعات الجانبية.',
+                gear: ['حذاء مشي خفيف', 'هاتف مع خريطة', 'قبعة وماء']
+            },
+            {
+                id: 'sahtan-valley',
+                title: 'مسار وادي السحتن - جبل شمس',
+                category: 'جبال شاهقة',
+                categoryKey: 'mountains',
+                location: 'ولاية الرستاق - محافظة جنوب الباطنة',
+                difficulty: 'صعب جداً',
+                distance: '14 كم (صعود حاد)',
+                duration: '7 - 8 ساعات',
+                image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=80',
+                description: 'مسار أسطوري لعشاق التحديات، يربط بين قرى وادي السحتن وقمم جبل شمس عبر درج جلي صخري وممرات تاريخية شاهقة.',
+                beforeTip: 'لا تقم بهذا المسار بمفردك إطلاقاً؛ استعن بمرشد محلي وخزن كمية كافية جداً من الماء والأغذية ذات السعرات العالية.',
+                duringTip: 'حافظ على استهلاكك للماء، وقس قدرتك الجسدية باستمرار لتجنب الإجهاد في وسط القمم.',
+                gear: ['عصا هايكنج مدمجة', 'حقيبة ظهر 30 لتر', 'مصباح رأسي', 'معدات إسعافات أولية']
+            }
+        ];
+
+        const categories = [
+            { key: 'all', label: 'جميع المسارات', icon: 'fa-globe' },
+            { key: 'mountains', label: 'جبال شاهقة', icon: 'fa-mountain' },
+            { key: 'wadis', label: 'أودية مائية', icon: 'fa-water' },
+            { key: 'villages', label: 'مدرجات وقرى', icon: 'fa-tree' },
+            { key: 'heritage', label: 'مسارات تاريخية', icon: 'fa-landmark' }
+        ];
+
+        let selectedCategory = 'all';
+        let searchQuery = '';
+        let favorites = JSON.parse(localStorage.getItem('oman_hiking_favs') || '[]');
+
+        window.onload = function() {
+            renderCategoryButtons();
+            renderDestinations();
+            updateFavBadge();
+        };
+
+        function renderCategoryButtons() {
+            const container = document.getElementById('categoriesContainer');
+            container.innerHTML = categories.map(cat => `
+                <button onclick="setCategory('${cat.key}')" class="px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-2 transition-all ${
+                    selectedCategory === cat.key 
+                    ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20' 
+                    : 'bg-gray-800/80 hover:bg-gray-700 text-gray-300 border border-gray-700/50'
+                }">
+                    <i class="fa-solid ${cat.icon}"></i>
+                    <span>${cat.label}</span>
+                </button>
+            `).join('');
+        }
+
+        function setCategory(key) {
+            selectedCategory = key;
+            renderCategoryButtons();
+            renderDestinations();
+        }
+
+        function handleSearch() {
+            const input = document.getElementById('searchInput');
+            searchQuery = input.value.trim().toLowerCase();
+            document.getElementById('clearSearchBtn').classList.toggle('hidden', searchQuery === '');
+            renderDestinations();
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            searchQuery = '';
+            document.getElementById('clearSearchBtn').classList.add('hidden');
+            renderDestinations();
+        }
+
+        function resetFilters() {
+            selectedCategory = 'all';
+            clearSearch();
+            renderCategoryButtons();
+        }
+
+        function getFilteredDestinations() {
+            return destinations.filter(item => {
+                const matchesCategory = selectedCategory === 'all' || item.categoryKey === selectedCategory;
+                const matchesSearch = item.title.toLowerCase().includes(searchQuery) || 
+                                      item.location.toLowerCase().includes(searchQuery) ||
+                                      item.description.toLowerCase().includes(searchQuery);
+                return matchesCategory && matchesSearch;
+            });
+        }
+
+        function renderDestinations() {
+            const grid = document.getElementById('destinationsGrid');
+            const noResults = document.getElementById('noResults');
+            const countLabel = document.getElementById('resultsCount');
+            const filtered = getFilteredDestinations();
+
+            countLabel.textContent = `تم العثور على ${filtered.length} مسار هايكنج`;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                noResults.classList.remove('hidden');
+                return;
+            }
+
+            noResults.classList.add('hidden');
+            grid.innerHTML = filtered.map(item => {
+                const isFav = favorites.includes(item.id);
+                return `
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col group cursor-pointer" onclick="openModal('${item.id}')">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
+                        
+                        <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-bold bg-amber-500 text-slate-950 shadow">
+                            ${item.category}
+                        </span>
+
+                        <button onclick="event.stopPropagation(); toggleFavorite('${item.id}')" class="absolute top-3 left-3 w-9 h-9 rounded-full bg-slate-900/80 text-white flex items-center justify-center hover:bg-amber-500 hover:text-slate-950 transition-all">
+                            <i class="${isFav ? 'fa-solid text-amber-500' : 'fa-regular'} fa-bookmark"></i>
+                        </button>
+
+                        <div class="absolute bottom-3 right-3 left-3">
+                            <span class="text-xs text-amber-400 font-semibold flex items-center gap-1 mb-1">
+                                <i class="fa-solid fa-location-dot"></i> ${item.location}
+                            </span>
+                            <h4 class="text-lg font-bold text-white leading-tight">${item.title}</h4>
+                        </div>
+                    </div>
+
+                    <div class="p-5 flex flex-col flex-grow justify-between space-y-4">
+                        <p class="text-gray-400 text-xs line-clamp-2 leading-relaxed">${item.description}</p>
+                        
+                        <!-- Track Specifications -->
+                        <div class="grid grid-cols-2 gap-2 text-xs py-2.5 border-y border-gray-800/80 text-gray-300 bg-gray-900/40 px-3 rounded-xl">
+                            <div>
+                                <span class="text-gray-500 block text-[10px]">المسافة الكلية:</span>
+                                <span class="font-bold text-amber-400">${item.distance}</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-500 block text-[10px]">الصعوبة:</span>
+                                <span class="font-bold ${item.difficulty.includes('صعب') ? 'text-red-400' : item.difficulty.includes('متوسط') ? 'text-amber-400' : 'text-emerald-400'}">${item.difficulty}</span>
+                            </div>
+                        </div>
+
+                        <button class="w-full py-2.5 rounded-xl bg-gray-800/80 group-hover:bg-amber-500 group-hover:text-slate-950 text-gray-200 text-xs font-bold flex items-center justify-center gap-2 transition-all border border-gray-700/50">
+                            <span>تفاصيل المسار والتوصيات</span>
+                            <i class="fa-solid fa-arrow-left text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        function openModal(id) {
+            const item = destinations.find(d => d.id === id);
+            if (!item) return;
+
+            document.getElementById('modalImage').src = item.image;
+            document.getElementById('modalTitle').textContent = item.title;
+            document.getElementById('modalCategory').textContent = item.category;
+            document.getElementById('modalLocation').textContent = item.location;
+            document.getElementById('modalDistance').textContent = item.distance;
+            document.getElementById('modalDifficulty').textContent = item.difficulty;
+            document.getElementById('modalDifficulty').className = `font-bold text-xs sm:text-sm ${item.difficulty.includes('صعب') ? 'text-red-400' : item.difficulty.includes('متوسط') ? 'text-amber-400' : 'text-emerald-400'}`;
+            document.getElementById('modalDuration').textContent = item.duration;
+            document.getElementById('modalDescription').textContent = item.description;
+            document.getElementById('modalBeforeTip').textContent = item.beforeTip;
+            document.getElementById('modalDuringTip').textContent = item.duringTip;
+            document.getElementById('modalMapLink').href = `https://maps.google.com/?q=${encodeURIComponent(item.title + ' ' + item.location)}`;
+
+            const gearContainer = document.getElementById('modalGear');
+            gearContainer.innerHTML = item.gear.map(g => `
+                <span class="px-3 py-1.5 rounded-lg bg-gray-800 border border-gray-700 text-xs text-amber-300 font-medium flex items-center gap-1.5">
+                    <i class="fa-solid fa-check text-amber-500"></i> ${g}
+                </span>
+            `).join('');
+
+            updateModalFavBtn(item.id);
+
+            const modal = document.getElementById('detailModal');
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('detailModal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        function toggleFavorite(id) {
+            if (favorites.includes(id)) {
+                favorites = favorites.filter(favId => favId !== id);
+            } else {
+                favorites.push(id);
+            }
+            localStorage.setItem('oman_hiking_favs', JSON.stringify(favorites));
+            updateFavBadge();
+            renderDestinations();
+            updateModalFavBtn(id);
+            if (!document.getElementById('favModal').classList.contains('hidden')) {
+                renderFavoritesList();
+            }
+        }
+
+        function updateModalFavBtn(id) {
+            const isFav = favorites.includes(id);
+            const btn = document.getElementById('modalFavBtn');
+            const btnText = document.getElementById('modalFavBtnText');
+            btn.onclick = () => toggleFavorite(id);
+            
+            if (isFav) {
+                btn.className = "w-full sm:w-auto px-6 py-3 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/40 font-bold text-sm flex items-center justify-center gap-2 transition-all";
+                btnText.textContent = "محفوظ بالمفضلة";
+            } else {
+                btn.className = "w-full sm:w-auto px-6 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 text-white font-bold text-sm flex items-center justify-center gap-2 border border-gray-700 transition-all";
+                btnText.textContent = "حفظ المسار";
+            }
+        }
+
+        function updateFavBadge() {
+            const badge = document.getElementById('favCountBadge');
+            if (favorites.length > 0) {
+                badge.textContent = favorites.length;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function toggleFavoritesModal() {
+            const modal = document.getElementById('favModal');
+            if (modal.classList.contains('hidden')) {
+                renderFavoritesList();
+                modal.classList.remove('hidden');
+                setTimeout(() => modal.classList.remove('opacity-0'), 10);
+            } else {
+                modal.classList.add('opacity-0');
+                setTimeout(() => modal.classList.add('hidden'), 300);
+            }
+        }
+
+        function renderFavoritesList() {
+            const container = document.getElementById('favListContainer');
+            if (favorites.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8 text-gray-400 text-sm">
+                        <i class="fa-regular fa-bookmark text-3xl mb-2 text-gray-600"></i>
+                        <p>لا توجد مسارات محفوظة حتى الآن.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const favItems = destinations.filter(d => favorites.includes(d.id));
+            container.innerHTML = favItems.map(item => `
+                <div class="flex items-center justify-between p-3 bg-gray-800/60 rounded-xl border border-gray-700/50">
+                    <div class="flex items-center gap-3">
+                        <img src="${item.image}" class="w-12 h-12 rounded-lg object-cover">
+                        <div>
+                            <h5 class="text-sm font-bold text-white">${item.title}</h5>
+                            <span class="text-xs text-amber-400">${item.distance} - ${item.difficulty}</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="openModal('${item.id}'); toggleFavoritesModal();" class="px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold text-xs">تفاصيل</button>
+                        <button onclick="toggleFavorite('${item.id}')" class="p-2 text-red-400 hover:text-red-300">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function scrollToFeelings() {
+            document.getElementById('feelingsSection').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+    <footer class="text-center p-4 bg-black text-white"> <p>© 2026. جميع الحقوق محفوظة لـ الوليد هلال عبد الله هلال الصوافي.</p> </footer>
+</body>
+</html>
